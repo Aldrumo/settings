@@ -3,7 +3,7 @@
 namespace Aldrumo\Settings;
 
 use Aldrumo\Settings\Models\Setting;
-use Contracts\Repository as SettingsRepository;
+use Aldrumo\Settings\Contracts\Repository as SettingsRepository;
 
 class Repository implements SettingsRepository
 {
