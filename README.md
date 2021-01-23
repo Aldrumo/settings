@@ -1,0 +1,2 @@
+# settings
+Laravel settings package
