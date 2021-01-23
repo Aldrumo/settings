@@ -2,7 +2,7 @@
 
 namespace Aldrumo\Settings;
 
-use Contracts\Repository as SettingsContract;
+use Aldrumo\Settings\Contracts\Repository as SettingsContract;
 use Illuminate\Support\ServiceProvider;
 
 class SettingsServiceProvider extends ServiceProvider
@@ -17,6 +17,11 @@ class SettingsServiceProvider extends ServiceProvider
         $this->bootMigrations();
     }
 
+    protected function bootMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
     protected function registerRepository()
     {
         $this->app->singleton(
@@ -25,10 +30,5 @@ class SettingsServiceProvider extends ServiceProvider
                 return new Repository();
             }
         );
-    }
-
-    protected function bootMigrations()
-    {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }
