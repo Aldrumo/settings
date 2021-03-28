@@ -4,12 +4,17 @@ namespace Aldrumo\Settings;
 
 use Aldrumo\Settings\Models\Setting;
 use Aldrumo\Settings\Contracts\Repository as SettingsRepository;
+use Illuminate\Database\QueryException;
 
 class Repository implements SettingsRepository
 {
     public function get(string $slug)
     {
-        $setting = Setting::where('slug', $slug)->first();
+        try {
+            $setting = Setting::where('slug', $slug)->first();
+        } catch (QueryException $e) {
+            return null;
+        }
 
         if ($setting === null) {
             return null;
